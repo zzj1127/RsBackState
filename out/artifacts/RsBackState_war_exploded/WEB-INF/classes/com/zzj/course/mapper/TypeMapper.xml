@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zzj.course.dao.TypeMapper">
+
+    <resultMap id="TypeResultMap" type="com.zzj.course.model.Type">
+        <id column="typeid" property="typeid" jdbcType="VARCHAR"/>
+        <result column="typename" property="typename" jdbcType="VARCHAR"/>
+        <result column="typedesc" property="typedesc" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <!--查询所有-->
+    <select id="findAllType" parameterType="Type" resultMap="TypeResultMap">
+         select * from resourcetype
+    </select>
+    <select id="addtype" parameterType="Type" resultMap="TypeResultMap">
+        insert into resourcetype(typename,typedesc)
+        VALUES (#{typename},#{typedesc})
+
+    </select>
+    <select id="updatetype" parameterType="Type" resultMap="TypeResultMap">
+         update resourcetype set typename=#{typename},typedesc=#{typedesc} where typeid=#{typeid}
+    </select>
+</mapper>
+
+

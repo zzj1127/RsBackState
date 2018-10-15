@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zzj.course.dao.TypeOfNameMapper">
+
+    <resultMap id="TypeOfNameResultMap" type="com.zzj.course.model.TypeOfName">
+        <id column="typeofnameid" property="typeofnameid" jdbcType="VARCHAR"/>
+        <result column="typeid" property="typeid" jdbcType="VARCHAR"/>
+        <result column="typeofname" property="typeofname" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <!--查询所有-->
+    <select id="findAllTON" parameterType="TypeOfName" resultMap="TypeOfNameResultMap">
+         select * from typeofname
+    </select>
+    <!--通过typeid查询所有-->
+    <select id="selectTonById" parameterType="TypeOfName" resultMap="TypeOfNameResultMap">
+         select * from typeofname where typeid=#{typeid}
+    </select>
+    <select id="changeTon" parameterType="TypeOfName" resultMap="TypeOfNameResultMap" >
+    update typeofname set typeid=#{typeid},typeofname=#{typeofname} where typeofnameid=#{typeofnameid}
+    </select>
+    <select id="addTon" parameterType="TypeOfName" resultMap="TypeOfNameResultMap">
+        insert into typeofname(typeid,typeofname)
+        VALUES (#{typeid},#{typeofname})
+
+    </select>
+</mapper>
